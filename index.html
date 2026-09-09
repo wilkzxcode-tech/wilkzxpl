@@ -1,0 +1,465 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WilkzxPL | Przyjazny Profil Minecraft</title>
+    <!-- Pixel Font z Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=VT323&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --bg-dark: #120c1f;
+            --card-bg: #1e1433;
+            --panel-bg: #281b42;
+            --purple-main: #b76eef;
+            --purple-light: #e9d5ff;
+            --purple-dark: #7e22ce;
+            --accent-pink: #f472b6;
+            --accent-yellow: #fde047;
+            --accent-green: #86efac;
+            --text-main: #faf5ff;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Press Start 2P', cursive;
+            image-rendering: pixelated;
+        }
+
+        body {
+            background-color: var(--bg-dark);
+            /* Fioletowe tło w gwiazdki i siatkę */
+            background-image: 
+                radial-gradient(circle at 50% 50%, rgba(183, 110, 239, 0.25) 0%, transparent 70%),
+                linear-gradient(rgba(233, 213, 255, 0.05) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(233, 213, 255, 0.05) 1px, transparent 1px);
+            background-size: 100% 100%, 28px 28px, 28px 28px;
+            color: var(--text-main);
+            min-height: 100vh;
+            width: 100vw;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow-x: hidden;
+            padding: 20px;
+        }
+
+        /* Główna karta profilowa */
+        .full-container {
+            display: flex;
+            flex-direction: row;
+            width: 100%;
+            max-width: 1250px;
+            min-height: 82vh;
+            background: var(--card-bg);
+            border: 5px solid var(--purple-main);
+            box-shadow: 0 0 30px rgba(183, 110, 239, 0.4), 10px 10px 0px #0a0612;
+            position: relative;
+            overflow: hidden;
+        }
+
+        /* LEWA STRONA - SKIN */
+        .hero-section {
+            flex: 1.1;
+            background: linear-gradient(180deg, #24163d 0%, #120b21 100%);
+            border-right: 5px solid var(--purple-main);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 30px;
+            position: relative;
+            min-width: 320px;
+        }
+
+        .skin-aura {
+            position: absolute;
+            width: 300px;
+            height: 300px;
+            background: radial-gradient(circle, rgba(244, 114, 182, 0.35) 0%, rgba(183, 110, 239, 0.2) 50%, transparent 75%);
+            animation: pulseAura 4s ease-in-out infinite alternate;
+            z-index: 1;
+        }
+
+        .skin-render {
+            width: 100%;
+            max-width: 380px;
+            max-height: 450px;
+            object-fit: contain;
+            z-index: 2;
+            filter: drop-shadow(0px 12px 10px rgba(0, 0, 0, 0.6));
+            animation: floatSkin 3.8s ease-in-out infinite;
+            transition: opacity 0.3s ease, transform 0.3s ease;
+        }
+
+        .status-badge {
+            z-index: 2;
+            margin-top: 20px;
+            background-color: rgba(18, 12, 31, 0.85);
+            border: 2px solid var(--accent-green);
+            padding: 10px 16px;
+            font-size: 9px;
+            color: var(--accent-green);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            box-shadow: 3px 3px 0px #000;
+        }
+
+        .status-dot {
+            width: 10px;
+            height: 10px;
+            background-color: var(--accent-green);
+            border-radius: 50%;
+            box-shadow: 0 0 8px var(--accent-green);
+            animation: blink 1.6s infinite;
+        }
+
+        /* PRAWA STRONA - ZAKŁADKI */
+        .main-section {
+            flex: 1.9;
+            display: flex;
+            flex-direction: column;
+            padding: 35px;
+            background-color: var(--panel-bg);
+            position: relative;
+        }
+
+        .profile-header {
+            margin-bottom: 22px;
+            border-bottom: 3px dashed var(--purple-main);
+            padding-bottom: 18px;
+        }
+
+        .title-name {
+            font-size: 26px;
+            color: #ffffff;
+            text-shadow: 3px 3px 0px var(--purple-dark);
+            margin-bottom: 10px;
+            letter-spacing: 1px;
+        }
+
+        .subtitle {
+            font-family: 'VT323', monospace;
+            font-size: 22px;
+            color: var(--purple-light);
+            letter-spacing: 1px;
+        }
+
+        /* Nawigacja Zakładek */
+        .tabs-nav {
+            display: flex;
+            gap: 12px;
+            margin-bottom: 22px;
+            flex-wrap: wrap;
+        }
+
+        .tab-btn {
+            background-color: var(--card-bg);
+            color: var(--text-main);
+            border: 3px solid var(--purple-main);
+            padding: 12px 18px;
+            font-size: 10px;
+            cursor: pointer;
+            box-shadow: 3px 3px 0px #000;
+            transition: all 0.2s ease;
+        }
+
+        .tab-btn:hover {
+            background-color: var(--purple-dark);
+            color: #fff;
+            transform: translate(-2px, -2px);
+            box-shadow: 5px 5px 0px #000;
+        }
+
+        .tab-btn.active {
+            background-color: var(--purple-main);
+            color: #120c1f;
+            font-weight: bold;
+            box-shadow: 2px 2px 0px #000;
+            transform: translate(2px, 2px);
+        }
+
+        /* Zawartość Zakładek */
+        .tab-content {
+            display: none;
+            background-color: #1a112e;
+            border: 3px solid var(--purple-main);
+            padding: 22px;
+            flex: 1;
+            box-shadow: 5px 5px 0px #000;
+            overflow-y: auto;
+        }
+
+        .tab-content.active {
+            display: block;
+            animation: fadeIn 0.4s ease-out;
+        }
+
+        .bio-paragraph {
+            font-family: 'VT323', monospace;
+            font-size: 21px;
+            line-height: 1.6;
+            color: #f3e8ff;
+            margin-bottom: 18px;
+        }
+
+        /* KOLOR DLA WYRÓŻNIONEGO NICKU WILKZXPL */
+        .highlight {
+            color: var(--accent-yellow);
+            font-weight: bold;
+            text-shadow: 0 0 8px rgba(253, 224, 71, 0.5);
+        }
+
+        /* Kafelki w sekcji INFO */
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));
+            gap: 15px;
+            margin-top: 15px;
+        }
+
+        .stat-box {
+            background-color: #2a1b47;
+            border: 2px solid var(--purple-main);
+            padding: 15px;
+            text-align: center;
+            box-shadow: 3px 3px 0px #000;
+        }
+
+        .stat-value {
+            font-size: 13px;
+            color: var(--accent-yellow);
+            margin-bottom: 6px;
+        }
+
+        .stat-label {
+            font-family: 'VT323', monospace;
+            font-size: 17px;
+            color: var(--purple-light);
+        }
+
+        /* Social Media Buttons */
+        .social-grid {
+            display: flex;
+            flex-direction: column;
+            gap: 14px;
+        }
+
+        .social-card {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            background-color: #24163e;
+            border: 3px solid var(--purple-main);
+            padding: 14px 18px;
+            text-decoration: none;
+            color: #fff;
+            font-size: 10px;
+            box-shadow: 4px 4px 0px #000;
+            transition: all 0.2s ease;
+        }
+
+        .social-card:hover {
+            transform: translate(-3px, -3px);
+            box-shadow: 6px 6px 0px #000;
+        }
+
+        .social-card.yt:hover { background-color: #ff0000; border-color: #fff; }
+        .social-card.tt:hover { background-color: #00f2fe; color: #000; border-color: #fff; }
+        .social-card.ig:hover { background-color: #e1306c; border-color: #fff; }
+
+        /* Discord Card */
+        .discord-card {
+            background: linear-gradient(135deg, #2e1d4d 0%, #1b1033 100%);
+            border: 4px solid #5865F2;
+            padding: 25px;
+            text-align: center;
+            box-shadow: 5px 5px 0px #000;
+        }
+
+        .dc-title {
+            color: #7289da;
+            font-size: 13px;
+            margin-bottom: 15px;
+        }
+
+        .dc-btn {
+            display: inline-block;
+            margin-top: 15px;
+            background-color: #5865F2;
+            color: #fff;
+            padding: 14px 22px;
+            text-decoration: none;
+            font-size: 10px;
+            border: 3px solid #fff;
+            box-shadow: 4px 4px 0px #000;
+            transition: all 0.2s;
+        }
+
+        .dc-btn:hover {
+            background-color: #7289da;
+            transform: scale(1.04);
+        }
+
+        /* Animacje */
+        @keyframes floatSkin {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+            100% { transform: translateY(0px); }
+        }
+
+        @keyframes pulseAura {
+            0% { opacity: 0.4; transform: scale(0.95); }
+            100% { opacity: 0.8; transform: scale(1.08); }
+        }
+
+        @keyframes blink {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.3; }
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(8px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @media (max-width: 900px) {
+            .full-container { flex-direction: column; }
+            .hero-section { border-right: none; border-bottom: 5px solid var(--purple-main); }
+            .skin-render { max-width: 240px; }
+            .main-section { padding: 20px; }
+            .title-name { font-size: 20px; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="full-container">
+        
+        <!-- LEWA STRONA: SKIN -->
+        <div class="hero-section">
+            <div class="skin-aura"></div>
+            
+            <!-- Podgląd skina -->
+            <img id="main-skin" src="avatarBody5.png" alt="Skin WilkzxPL" class="skin-render">
+            
+            <div class="status-badge">
+                <div class="status-dot"></div>
+                <span>STATUS: TWORZĘ MAPKĘ ✨</span>
+            </div>
+        </div>
+
+        <!-- PRAWA STRONA: ZAKŁADKI -->
+        <div class="main-section">
+            
+            <div class="profile-header">
+                <h1 class="title-name">WILKZXPL 💜</h1>
+                <p class="subtitle">✨ Twórca Mapek ✨</p>
+            </div>
+
+            <!-- Przełączniki Zakładek -->
+            <div class="tabs-nav">
+                <button class="tab-btn active" onclick="switchTab('info', 'avatarBody5.png')">📋 O MNIE</button>
+                <button class="tab-btn" onclick="switchTab('social', 'avatarBody4.png')">🌐 SOCIAL MEDIA</button>
+                <button class="tab-btn" onclick="switchTab('kontakt', 'avatarBody5.png')">💬 KONTAKT</button>
+            </div>
+
+            <!-- ZAKŁADKA 1: O MNIE -->
+            <div id="info" class="tab-content active">
+                <p class="bio-paragraph">
+                    Hejka! Cieszę się, że tu jesteś! Nazywam się <span class="highlight">WilkzxPL</span> i uwielbiam tworzyć mapki w Minecraft! 🏰💜
+                </p>
+                <p class="bio-paragraph">
+                    Jestem małym twórcą, który wkłada całe serce w budowanie ciekawych, dopracowanych i wciągających mapek. Jeśli lubisz przygodę, kreatywność i dobrą zabawę – dobrze trafiłeś!
+                </p>
+
+                <div class="stats-grid">
+                    <div class="stat-box">
+                        <div class="stat-value">🛠️ PASJA</div>
+                        <div class="stat-label">Tworzenie Mapek</div>
+                    </div>
+                    <div class="stat-box">
+                        <div class="stat-value">💜 KLIMAT</div>
+                        <div class="stat-label">Fiolet & Pixel Art</div>
+                    </div>
+                    <div class="stat-box">
+                        <div class="stat-value">👥 EKIPA</div>
+                        <div class="stat-label">WilkzXteam</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ZAKŁADKA 2: SOCIAL MEDIA -->
+            <div id="social" class="tab-content">
+                <p class="bio-paragraph" style="margin-bottom: 15px;">
+                    Wpadnij na moje sociale! Dzielę się tam materiałami z budowania i filmikami! 🎬✨
+                </p>
+                <div class="social-grid">
+                    <a href="https://www.youtube.com/@WilkzXteam" target="_blank" class="social-card yt">
+                        <span>📺 YOUTUBE</span>
+                        <span>@WilkzXteam ➔</span>
+                    </a>
+                    <a href="https://www.tiktok.com/@wilkzxteam" target="_blank" class="social-card tt">
+                        <span>🎵 TIKTOK</span>
+                        <span>@wilkzxteam ➔</span>
+                    </a>
+                    <a href="https://www.instagram.com/wilkzxteam/" target="_blank" class="social-card ig">
+                        <span>📸 INSTAGRAM</span>
+                        <span>@wilkzxteam ➔</span>
+                    </a>
+                </div>
+            </div>
+
+            <!-- ZAKŁADKA 3: KONTAKT / DISCORD -->
+            <div id="kontakt" class="tab-content">
+                <div class="discord-card">
+                    <h2 class="dc-title">💬 DOŁĄCZ DO NASZEGO DISCORDA!</h2>
+                    <p class="bio-paragraph" style="font-size: 19px; margin-bottom: 8px;">
+                        Chcesz pogadać, przetestować nową mapkę albo po prostu spędzić miło czas?
+                    </p>
+                    <p class="bio-paragraph" style="font-size: 16px; color: var(--purple-light);">
+                        Serdecznie zapraszam na nasz serwer! 🎉
+                    </p>
+                    
+                    <a href="https://discord.gg/bwGJaDM7ry" target="_blank" class="dc-btn">
+                        🚀 DOŁĄCZ DO DISCORDA
+                    </a>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+
+    <script>
+        function switchTab(tabId, skinImage) {
+            const contents = document.querySelectorAll('.tab-content');
+            contents.forEach(content => content.classList.remove('active'));
+
+            const buttons = document.querySelectorAll('.tab-btn');
+            buttons.forEach(btn => btn.classList.remove('active'));
+
+            document.getElementById(tabId).classList.add('active');
+            event.currentTarget.classList.add('active');
+
+            changeSkin(skinImage);
+        }
+
+        function changeSkin(imagePath) {
+            const skinImg = document.getElementById('main-skin');
+            skinImg.style.opacity = '0';
+            skinImg.style.transform = 'scale(0.85)';
+            
+            setTimeout(() => {
+                skinImg.src = imagePath;
+                skinImg.style.opacity = '1';
+                skinImg.style.transform = 'scale(1)';
+            }, 150);
+        }
+    </script>
+</body>
+</html>
