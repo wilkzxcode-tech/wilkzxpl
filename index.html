@@ -152,7 +152,7 @@
         /* Nawigacja Zakładek */
         .tabs-nav {
             display: flex;
-            gap: 12px;
+            gap: 10px;
             margin-bottom: 22px;
             flex-wrap: wrap;
         }
@@ -161,7 +161,7 @@
             background-color: var(--card-bg);
             color: var(--text-main);
             border: 3px solid var(--purple-main);
-            padding: 12px 18px;
+            padding: 12px 16px;
             font-size: 10px;
             cursor: pointer;
             box-shadow: 3px 3px 0px #000;
@@ -207,11 +207,11 @@
             margin-bottom: 18px;
         }
 
-        /* KOLOR DLA WYRÓŻNIONEGO NICKU WILKZXPL */
+        /* KOLOR BIAŁY DLA NICKU WILKZXPL */
         .highlight {
-            color: var(--accent-yellow);
+            color: #ffffff;
             font-weight: bold;
-            text-shadow: 0 0 8px rgba(253, 224, 71, 0.5);
+            text-shadow: 0 0 8px rgba(255, 255, 255, 0.6);
         }
 
         /* Kafelki w sekcji INFO */
@@ -271,6 +271,43 @@
         .social-card.yt:hover { background-color: #ff0000; border-color: #fff; }
         .social-card.tt:hover { background-color: #00f2fe; color: #000; border-color: #fff; }
         .social-card.ig:hover { background-color: #e1306c; border-color: #fff; }
+
+        /* Karta MOJE MAPY i Przycisk */
+        .map-card {
+            background: linear-gradient(135deg, #2a164d 0%, #170d2c 100%);
+            border: 4px solid var(--purple-main);
+            padding: 25px;
+            text-align: center;
+            box-shadow: 5px 5px 0px #000;
+        }
+
+        .map-title {
+            color: var(--accent-yellow);
+            font-size: 13px;
+            margin-bottom: 15px;
+            text-shadow: 2px 2px 0px #000;
+        }
+
+        .map-btn {
+            display: inline-block;
+            margin-top: 15px;
+            background: linear-gradient(180deg, #f472b6 0%, #b76eef 100%);
+            color: #ffffff;
+            padding: 16px 26px;
+            text-decoration: none;
+            font-size: 11px;
+            border: 3px solid #ffffff;
+            box-shadow: 4px 4px 0px #000;
+            transition: all 0.2s ease;
+            cursor: pointer;
+            text-shadow: 2px 2px 0px #000;
+        }
+
+        .map-btn:hover {
+            transform: translate(-3px, -3px) scale(1.03);
+            box-shadow: 7px 7px 0px #000;
+            background: linear-gradient(180deg, #b76eef 0%, #7e22ce 100%);
+        }
 
         /* Discord Card */
         .discord-card {
@@ -364,6 +401,7 @@
             <!-- Przełączniki Zakładek -->
             <div class="tabs-nav">
                 <button class="tab-btn active" onclick="switchTab('info', 'avatarBody5.png')">📋 O MNIE</button>
+                <button class="tab-btn" onclick="switchTab('mapy', 'avatarBody4.png')">🗺️ MOJE MAPY</button>
                 <button class="tab-btn" onclick="switchTab('social', 'avatarBody4.png')">🌐 SOCIAL MEDIA</button>
                 <button class="tab-btn" onclick="switchTab('kontakt', 'avatarBody5.png')">💬 KONTAKT</button>
             </div>
@@ -393,7 +431,24 @@
                 </div>
             </div>
 
-            <!-- ZAKŁADKA 2: SOCIAL MEDIA -->
+            <!-- ZAKŁADKA 2: MOJE MAPY -->
+            <div id="mapy" class="tab-content">
+                <div class="map-card">
+                    <h2 class="map-title">🗺️ MOJE AUTORSKIE MAPKI</h2>
+                    <p class="bio-paragraph" style="font-size: 19px; margin-bottom: 15px;">
+                        Chcesz sprawdzić moje mapki i pobrać moje najnowsze projekty do Minecrafta?
+                    </p>
+                    <p class="bio-paragraph" style="font-size: 16px; color: var(--purple-light); margin-bottom: 10px;">
+                        Kliknij poniższy przycisk, aby przejść do mojego profilu na MinecraftMapy.pl! 🚀
+                    </p>
+                    
+                    <a href="https://minecraftmapy.pl/profil/WILKZX" target="_blank" class="map-btn">
+                        ✨ WEJDŹ I ZOBACZ ➔
+                    </a>
+                </div>
+            </div>
+
+            <!-- ZAKŁADKA 3: SOCIAL MEDIA -->
             <div id="social" class="tab-content">
                 <p class="bio-paragraph" style="margin-bottom: 15px;">
                     Wpadnij na moje sociale! Dzielę się tam materiałami z budowania i filmikami! 🎬✨
@@ -414,7 +469,7 @@
                 </div>
             </div>
 
-            <!-- ZAKŁADKA 3: KONTAKT / DISCORD -->
+            <!-- ZAKŁADKA 4: KONTAKT / DISCORD -->
             <div id="kontakt" class="tab-content">
                 <div class="discord-card">
                     <h2 class="dc-title">💬 DOŁĄCZ DO NASZEGO DISCORDA!</h2>
